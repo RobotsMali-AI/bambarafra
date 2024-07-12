@@ -28,11 +28,13 @@ def argumentValidation():
         print("Usage: python convertToHuggingFaceDatasetFormat.py <bam_file_path> <fr_file_path> <target_name>")
         sys.exit(1)
 
+
     for path in sys.argv[1:-1] :
         if not os.path.isfile(path):
             print(f"{path}: file not find")
             sys.exit(1)
         
+
 if __name__ == '__main__':
     argumentValidation()
 
@@ -48,12 +50,15 @@ if __name__ == '__main__':
         bam = list(file)
         file.close 
 
+
     with open(files_path[1], "r") as file : 
         fr = list(file)
         file.close()
 
+
     for index in range(len(bam)): 
         pairs[bam[index]] = fr[index]
+
 
     pairs = list(pairs.items())
 
@@ -63,6 +68,7 @@ if __name__ == '__main__':
                     "bm" : (pair[0]).replace("\n", ""),
                     "fr" : (pair[1]).replace("\n", "")
                     })
+        
     with open(f"{files_path[2]}.json", "w") as file : 
         json.dump(data,file)
         file.close()
